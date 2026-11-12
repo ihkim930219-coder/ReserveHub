@@ -1,0 +1,188 @@
+
+/* 내 예약 페이지 전체 */
+.my-reservations-page {
+    width: 100%;
+    max-width: 870px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* 예약 종류 선택 탭 */
+.my-reservations-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* 탭 버튼 */
+.my-reservations-tabs button {
+    padding: 12px 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    color: #4b5563;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* 마우스를 올렸을 때 */
+.my-reservations-tabs button:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #2563eb;
+}
+
+/* 선택된 탭 */
+.my-reservations-tabs button.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+}
+
+/* 기존 예약 목록과 너비 통일 */
+.my-reservations-page .my-reservations {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* 모바일 대응 */
+@media (max-width: 640px) {
+    .my-reservations-page {
+        margin: 24px auto 50px;
+        padding: 0 16px;
+    }
+
+    .my-reservations-tabs {
+        gap: 8px;
+    }
+
+    .my-reservations-tabs button {
+        flex: 1;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+}
+
+
+/* 상담 예약 수정 폼 */
+.my-reservations-page .reservation-edit-form {
+    margin-top: 20px;
+    padding: 24px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+/* 수정 폼 제목 */
+.my-reservations-page .reservation-edit-form h4 {
+    margin: 0 0 20px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* 날짜 및 시간 입력 영역 */
+.my-reservations-page .reservation-edit-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* 입력 항목 */
+.my-reservations-page .reservation-edit-fields label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+/* 날짜 및 시간 입력창 */
+.my-reservations-page .reservation-edit-fields input {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+    color: #1e293b;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+/* 입력창 선택 */
+.my-reservations-page .reservation-edit-fields input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* 예약 수정 및 저장 버튼 영역 */
+.my-reservations-page .reservation-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* 기본 버튼 */
+.my-reservations-page .reservation-actions button {
+    padding: 11px 20px;
+    border: 1px solid #2563eb;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.my-reservations-page .reservation-actions button:hover:not(:disabled) {
+    background: #1d4ed8;
+}
+
+/* 예약 취소 버튼 */
+.my-reservations-page .reservation-actions .btn-danger {
+    background: #fff;
+    border-color: #fca5a5;
+    color: #dc2626;
+}
+
+.my-reservations-page .reservation-actions .btn-danger:hover:not(:disabled) {
+    background: #fef2f2;
+}
+
+/* 비활성화 버튼 */
+.my-reservations-page .reservation-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 모바일 대응 */
+@media (max-width: 640px) {
+    .my-reservations-page .reservation-edit-form {
+        padding: 16px;
+    }
+
+    .my-reservations-page .reservation-edit-fields {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .my-reservations-page .reservation-actions button {
+        flex: 1;
+    }
+}
