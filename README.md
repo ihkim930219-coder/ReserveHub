@@ -82,7 +82,7 @@ ReserveHub는 회의실 예약과 상담 예약을 하나의 플랫폼에서 관
 ![회의실 예약](docs/images/06.회의실예약.png)
 
 **예약 확인**
-![예약 확인](docs/images/08.예약확인.png)
+![예약 확인](docs/images/08.회의실예약확인.png)
 
 **예약 시간 변경**
 ![예약 시간 변경](docs/images/09.회의실예약시간변경.png)
