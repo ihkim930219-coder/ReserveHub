@@ -109,3 +109,80 @@ ReserveHub는 회의실 예약과 상담 예약을 하나의 플랫폼에서 관
 **회의실 수정**
 ![회의실 수정](docs/images/19.회의실수정.png)
 
+
+## 4. 데이터베이스 설계 (ERD)
+
+ReserveHub는 총 5개의 테이블로 구성되어 있으며,
+사용자와 회의실 예약, 상담 예약 간의 관계를 외래 키로 관리합니다.
+
+```mermaid
+erDiagram
+    users ||--o{ reservations : creates
+    meeting_rooms ||--o{ reservations : has
+    users ||--o{ consultation_reservations : creates
+    consultants ||--o{ consultation_reservations : handles
+
+    users {
+        BIGINT id PK
+        VARCHAR username UK
+        VARCHAR email UK
+        VARCHAR password
+        BIGINT role
+        DATETIME created_at
+    }
+
+    meeting_rooms {
+        BIGINT id PK
+        VARCHAR name
+        INT capacity
+        VARCHAR location
+        BOOLEAN is_active
+        DATETIME created_at
+    }
+
+    reservations {
+        BIGINT id PK
+        BIGINT user_id FK
+        BIGINT room_id FK
+        DATETIME start_time
+        DATETIME end_time
+        BIGINT status
+        DATETIME created_at
+    }
+
+    consultants {
+        BIGINT id PK
+        VARCHAR name
+        VARCHAR department
+        BOOLEAN is_active
+    }
+
+    consultation_reservations {
+        BIGINT id PK
+        BIGINT user_id FK
+        BIGINT consultant_id FK
+        VARCHAR consultation_type
+        DATETIME start_time
+        DATETIME end_time
+        INT status
+    }
+```
+
+### 테이블 설명
+
+| 테이블 | 설명 |
+|---|---|
+| users | 회원 정보 및 권한 관리 |
+| meeting_rooms | 회의실 정보 및 활성화 상태 관리 |
+| reservations | 회의실 예약 정보 관리 |
+| consultants | 상담 담당자 정보 관리 |
+| consultation_reservations | 상담 예약 정보 관리 |
+
+### 데이터 무결성
+
+- PK와 FK를 활용한 테이블 관계 설정
+- 회원 아이디 및 이메일 UNIQUE 제약조건
+- 회의실 수용 인원 CHECK 제약조건
+- 회의실 예약 종료 시간이 시작 시간보다 늦도록 CHECK 제약조건
+- 서비스 계층에서 예약 시간 중복 검사
+
