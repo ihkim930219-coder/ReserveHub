@@ -240,3 +240,41 @@ JWT 인증을 적용하여 로그인한 사용자만 예약 관련 API에 접근
 4. 프론트엔드는 발급받은 토큰을 sessionStorage에 저장합니다.
 5. API 요청 시 Authorization 헤더에 Bearer Token을 포함합니다.
 6. 서버는 JWT를 검증한 후 인증된 사용자의 요청을 처리합니다.
+
+
+## 6. 프로젝트 실행 방법
+
+### 실행 환경
+- Java 21
+- Spring Boot
+- MariaDB
+- Node.js
+- React + Vite
+
+### 1. 프로젝트 다운로드
+```bash
+git clone <GitHub 저장소 주소>
+cd reservehub
+```
+
+### 2. 데이터베이스 설정
+- MariaDB에 데이터베이스 생성
+- Spring Boot의 DB 연결 정보 설정
+- JWT Secret Key 설정
+
+### 3. 백엔드 실행
+```bash
+./gradlew bootRun
+```
+Windows에서는 `gradlew.bat bootRun` 사용
+
+- 백엔드: http://localhost:8080
+
+### 4. 프론트엔드 실행
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+- 프론트엔드: http://localhost:5173
