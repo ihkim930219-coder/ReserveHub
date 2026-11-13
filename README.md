@@ -186,3 +186,57 @@ erDiagram
 - 회의실 예약 종료 시간이 시작 시간보다 늦도록 CHECK 제약조건
 - 서비스 계층에서 예약 시간 중복 검사
 
+
+## 5. REST API 명세
+
+ReserveHub는 REST API를 기반으로 프론트엔드와 백엔드 간 데이터를 주고받습니다.
+
+JWT 인증을 적용하여 로그인한 사용자만 예약 관련 API에 접근할 수 있도록 구현했습니다.
+
+### 5.1 회원 및 인증 API
+
+| Method | Endpoint | 설명 |
+|---|---|---|
+| POST | /api/users | 회원가입 |
+| POST | /api/auth/login | 로그인 및 JWT 발급 |
+| GET | /api/users | 사용자 목록 조회 |
+
+### 5.2 회의실 예약 API
+
+| Method | Endpoint | 설명 |
+|---|---|---|
+| GET | /api/meeting-rooms | 회의실 목록 조회 |
+| POST | /api/reservations | 회의실 예약 생성 |
+| GET | /api/reservations/my | 내 회의실 예약 조회 |
+| PUT | /api/reservations/{id} | 회의실 예약 수정 |
+| POST | /api/reservations/{id}/cancel | 회의실 예약 취소 |
+
+### 5.3 상담 예약 API
+
+| Method | Endpoint | 설명 |
+|---|---|---|
+| GET | /api/consultants | 상담 담당자 목록 조회 |
+| POST | /api/consultation-reservations | 상담 예약 생성 |
+| GET | /api/consultation-reservations/my | 내 상담 예약 조회 |
+| PUT | /api/consultation-reservations/{id} | 상담 예약 수정 |
+| POST | /api/consultation-reservations/{id}/cancel | 상담 예약 취소 |
+
+### 5.4 주요 HTTP 응답 코드
+
+| 상태 코드 | 설명 |
+|---|---|
+| 200 OK | 요청 성공 |
+| 204 No Content | 예약 취소 성공 등 응답 본문이 없는 경우 |
+| 400 Bad Request | 잘못된 요청 데이터 |
+| 401 Unauthorized | 인증되지 않은 사용자 |
+| 404 Not Found | 존재하지 않는 예약 |
+| 409 Conflict | 동일 시간대 예약 중복 |
+
+### 5.5 JWT 인증 방식
+
+1. 사용자가 아이디와 비밀번호로 로그인합니다.
+2. Spring Security에서 사용자 인증을 처리합니다.
+3. 인증에 성공하면 JWT Access Token을 발급합니다.
+4. 프론트엔드는 발급받은 토큰을 sessionStorage에 저장합니다.
+5. API 요청 시 Authorization 헤더에 Bearer Token을 포함합니다.
+6. 서버는 JWT를 검증한 후 인증된 사용자의 요청을 처리합니다.
